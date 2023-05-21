@@ -10,11 +10,101 @@
 </head>
 <body>
   <header>
-    <div class="container-fluid text-center">
+    <div class="container-fluid text-white text-center">
       <h1>Weather Dashboard</h1>
     </div>
   </header>
   <main>
+    <div class="main container contian-fluid">
+      <div class="row">
+        <div class="col-sm-4">
+          <h3>Search for a City:</h3>
+            <form class="form-inline">
+              <input type="text" class="form-control" id="citySearch" placeholder="Enter a City">
+              <button type="submit" class="searchBtn btn-primary">Search</button>
+            </form>
+
+        <div class="list-cities"></div>
+        
+      </div>
+    </div>
+
+    <div class="col-md-8 container-left-columns">
+      <div class="row">
+        <div class="col-sm-8">
+          <div id="todaysForecast"class="row p-3 h-100">
+            <p class="currentDate"></p>
+            <p class="city"></p>
+            <p class="weather-icon"></p>
+            <p class="temperature"></p>
+            <p class = "wind"></p>
+            <p class="humidity"></p>
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col">
+          <div class="card forecast">
+            <div class="card-body">
+             <p class="day-one-date"></p>
+             <p class="day-one-icon"></p>
+             <p class="day-one-temperature"></p>
+             <p class="day-one-wind"></p>
+             <p class="day-one-humidity"></p>
+            </div>
+          </div>
+        </div>
+
+        <div class="col">
+          <div class="card forecast">
+            <div class="card-body">
+              <p class="day-two-date"></p>
+              <p class="day-two-icon"></p>
+             <p class="day-two-temperature"></p>
+             <p class="day-two-wind"></p>
+             <p class="day-two-humidity"></p>
+            </div>
+          </div>
+        </div>
+
+        <div class="col">
+          <div class="card forecast">
+            <div class="card-body">
+              <p class="day-three-date"></p>
+              <p class="day-three-icon"></p>
+             <p class="day-three-temperature"></p>
+             <p class="day-three-wind"></p>
+             <p class="day-three-humidity"></p>
+            </div>
+          </div>
+        </div>
+
+        <div class="col">
+            <div class="card forecast">
+              <div class="card-body">
+                <p class="day-four-date"></p>
+                <p class="day-four-icon"></p>
+             <p class="day-four-temperature"></p>
+             <p class="day-four-wind"></p>
+             <p class="day-four-humidity"></p>
+              </div>
+            </div>
+        </div>
+
+        <div class="col">
+          <div class="card forecast">
+            <div class="card-body">
+              <p class="day-five-date"></p>
+              <p class="day-five-icon"></p>
+             <p class="day-five-temperature"></p>
+             <p class="day-five-wind"></p>
+             <p class="day-five-humidity"></p>
+            </div>
+          </div>
+      </div>
+      
+    </div>
   </main>
   <footer>
   </footer>
