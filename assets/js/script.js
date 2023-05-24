@@ -13,6 +13,15 @@ var cities = [];
 
 // let previousCity = JSON.parse(localStorage.getItem("serchHistory"));
 
+
+function displayWeather () {
+
+}
+
+function displayForecast() {
+
+}
+
 function getCityData() {
   var cityURL = "https://api.openweathermap.org/data/2.5/weather?q=" + city + "&units=imperial&appid=" + APIkey;
 
@@ -41,7 +50,18 @@ function getCityData() {
   });
 };
 
+function getWeather(city, lat, lon) {
+  var forecastURL = "https://api.openweathermap.org/data/2.5/onecall?lat=" + lat + "&lon=" + lon + "&units=imperial&exclude=minutely,hourly&appid=" + APIkey;
 
+  fetch(forecastURL).then(function(response) {
+    response.json().then(function(data) {
+      console.log(data);
+    
+    displayWeather();
+    displayForecast();
+    });
+  });
+};
 
 // // Removes any null results stored in localStorage
 // if (previousCities!== null) {
