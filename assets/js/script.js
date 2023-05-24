@@ -13,9 +13,40 @@ var cities = [];
 
 // let previousCity = JSON.parse(localStorage.getItem("serchHistory"));
 
+function loadCities() {
+
+}
+
+function storeCities() {
+
+}
+
+function displayCitySearches() {
+
+}
+
 
 function displayWeather () {
 
+  var currentTemp = Math.round(data.current.temp);
+  var humidity = Math.round(data.current.humidity);
+  var wind = data.current.wind_speed;
+  var iconSource = data.current.weather[0].icon;
+
+  var icon = document.createElement("img");
+  icon.setAttribute('src', "")
+  icon.setAttribute('src', "https://openweathermap.org/img/wn/" + iconSource + "@2x.png")
+
+  currentConditionsTitle.innerHTML = cityName + " (" + dayjs().format("MM/DD/YYYY") + ") " + icon;
+  // append child 
+
+  currentTemp.appendChild(currentConditionsUl)
+  humidity.appendChild(currentConditionsUl)
+  wind.appendChild(currentConditionsUl)
+
+  currentTemp.textContent = "Temperature: " + temp + "&deg;F" ;
+  humidity.textContent = "Humidity: " + humidity + "%";
+  wind.textContent = "Wind Speed: " + wind + " MPH";
 }
 
 function displayForecast() {
@@ -143,8 +174,7 @@ function getWeather(city, lat, lon) {
 //                 const icon = ("<img src='https://openweathermap.org/img/w/" + data.current.weather[0].icon + ".png' alt='Weather icon'>");
 
 //                 // Displays city name, weather icon, and current date pulled from moment.js
-//                 currentConditionsTitle.innerHTML = cityName + " (" + dayjs().format("MM/DD/YYYY") + ") " + icon;
-
+//                 
 //                 const liArray = [];
           
 //                 currentConditionsUl.innerHTML = "";
@@ -157,9 +187,7 @@ function getWeather(city, lat, lon) {
 //                 }
 
 //                 // Populates contents of list items with properties of json object
-//                 liArray[0].innerHTML = "Temperature: " + Math.floor(data.current.temp) + " &deg;F" ;
-//                 liArray[1].textContent = "Humidity: " + data.current.humidity + "%";
-//                 liArray[2].textContent = "Wind Speed: " + Math.floor(data.current.wind_speed) + " MPH";
+//                 
 
 //                 liArray.forEach(li => {
 //                     currentConditionsUl.append(li);
