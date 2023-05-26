@@ -44,10 +44,10 @@ function displayCitySearches(city) {
 
 function displayWeather (city, data) {
   console.log(data)
-  var currentTemp = Math.round(main.temp);
+  var temp = Math.round(data.temp);
   var humidity = Math.round(data.humidity);
-  var wind = data.current.wind_speed;
-  var iconSource = data.current.weather[0].icon;
+  var wind = data.speed;
+  var iconSource = data.icon;
 
   currentConditions.textContent = "";
   currentConditions.setAttribute("class", "col-10 text-center")
@@ -60,7 +60,7 @@ function displayWeather (city, data) {
   headerCityDate.textContent = city + " (" + currentDate + ")";
 
   divCityHeader.appendChild(headerCityDate)
-  divCityHeader.appendChild(imageIcon)
+  divCityHeader.appendChild(icon)
   currentConditions.appendChild(divCityHeader)
 
   var divCurrent = document.createElement("div")
@@ -68,9 +68,9 @@ function displayWeather (city, data) {
   var humidity = document.createElement("p");
   var wind = document.createElement("p");
 
-  currentTemp.appendChild(currentConditionsUl)
-  humidity.appendChild(currentConditionsUl)
-  wind.appendChild(currentConditionsUl)
+  currentTemp.appendChild(currentConditions)
+  humidity.appendChild(currentConditions)
+  wind.appendChild(currentConditions)
 
   currentTemp.textContent = "Temperature: " + temp + "°F";
   humidity.textContent = "Humidity: " + humidity + "%";
@@ -89,9 +89,9 @@ function displayForecast(data) {
   // fiveDayHeader.textContent = "5-Day Forecast:"
 
   for (var i = 0; i < 5; i++ ) {
-    var tempForecast = Math.round(data.daily[i].temp.day);
-    var humidityForecast = data.daily[i].humidity;
-    var iconForecast = data.daily[i].weather[0].icon;
+    var tempForecast = Math.round(data.list[i].main.temp);
+    var humidityForecast = data.list[i].humidity;
+    var iconForecast = data.list[i].icon;
 
     var cardEl = document.createElement("div");
     cardEl.setAttribute("class", "card col-md-5 col-sm-10 bg-primary text-white text-center");
@@ -113,7 +113,7 @@ function displayForecast(data) {
     cardHumidEl.setAttribute("class", "card-text");
     cardHumidEl.textContent = "Humidity: " + humidityForecast + "%";
 
-    cardBodyEl.appendChild(cardBodyEl)
+    cardBodyEl.appendChild(cardDateEl)
     cardBodyEl.appendChild(cardIconEl)
     cardBodyEl.appendChild(cardTempEl)
     cardBodyEl.appendChild(cardHumidEl)
@@ -156,14 +156,13 @@ function getCityData(city) {
 };
 
 function getWeather(city, lat, lon) {
-  var forecastURL = "https://api.openweathermap.org/data/2.5/onecall?lat=" + lat + "&lon=" + lon + "&units=imperial&exclude=minutely,hourly&appid=" + APIKey;
-
+  var forecastURL = "https://api.openweathermap.org/data/2.5/forecast?lat=" + lat + "&lon=" + lon + "&appid=" + APIKey + "&units=imperial";
   fetch(forecastURL).then(function(response) {
     response.json().then(function(data) {
       console.log(data);
     
-    displayWeather();
-    displayForecast();
+    displayWeather(city, data);
+    displayForecast(data);
     });
   });
 };
