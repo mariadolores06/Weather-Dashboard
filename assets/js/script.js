@@ -3,7 +3,6 @@ var cityInput = document.querySelector("#city-search");
 var searchForm = document.querySelector("#search-form");
 var currentConditions = document.querySelector("#current-forecast");
 var previousCities = document.querySelector("#search-history");
-var previousContainer = document.querySelector("#search-history .card-body");
 var dailyContainer = document.querySelector("#daily-forecast");
 var fiveDayHeader = document.querySelector("#forecastHeader");
 var cities = [];
@@ -43,11 +42,11 @@ function displayCitySearches(city) {
 
 
 function displayWeather (city, data) {
-  console.log(data)
-  var temp = Math.round(data.temp);
-  var humidity = Math.round(data.humidity);
-  var wind = data.speed;
-  var iconSource = data.icon;
+
+  var CurrentTemp = Math.round(data.main.temp);
+  var humidity = Math.round(data.main.humidity);
+  var wind = Math.round(data.wind.speed);
+  var iconSource = data.weather[0].icon;
 
   currentConditions.textContent = "";
   currentConditions.setAttribute("class", "col-10 text-center")
@@ -65,20 +64,21 @@ function displayWeather (city, data) {
 
   var divCurrent = document.createElement("div")
   var currentTemp = document.createElement("p");
-  var humidity = document.createElement("p");
-  var wind = document.createElement("p");
+  var humidityEl = document.createElement("p");
+  var windEl = document.createElement("p");
+  var iconEl  = document.createElement("img");
 
-  currentTemp.appendChild(currentConditions)
-  humidity.appendChild(currentConditions)
-  wind.appendChild(currentConditions)
+  // currentTemp.appendChild(currentConditions)
+  // humidity.appendChild(currentConditions)
+  // wind.appendChild(currentConditions)
 
-  currentTemp.textContent = "Temperature: " + temp + "°F";
-  humidity.textContent = "Humidity: " + humidity + "%";
-  wind.textContent = "Wind Speed: " + wind + " MPH";
+  currentTemp.textContent = "Temperature: " + CurrentTemp + "°F";
+  humidityEl.textContent = "Humidity: " + humidity + "%";
+  windEl.textContent = "Wind Speed: " + wind + " MPH";
 
   divCurrent.appendChild(currentTemp);
-  divCurrent.appendChild(humidity);
-  divCurrent.appendChild(wind);
+  divCurrent.appendChild(humidityEl);
+  divCurrent.appendChild(windEl);
 
   currentConditions.appendChild(divCurrent);
 }
@@ -90,8 +90,8 @@ function displayForecast(data) {
 
   for (var i = 0; i < 5; i++ ) {
     var tempForecast = Math.round(data.list[i].main.temp);
-    var humidityForecast = data.list[i].humidity;
-    var iconForecast = data.list[i].icon;
+    var humidityForecast = data.list[i].main.humidity;
+    var iconForecast = data.list[i].weather[0].icon;
 
     var cardEl = document.createElement("div");
     cardEl.setAttribute("class", "card col-md-5 col-sm-10 bg-primary text-white text-center");
@@ -161,8 +161,17 @@ function getWeather(city, lat, lon) {
     response.json().then(function(data) {
       console.log(data);
     
-    displayWeather(city, data);
+    // displayWeather(city, data);
     displayForecast(data);
+    });
+  });
+
+  var weatherURL = "https://api.openweathermap.org/data/2.5/weather?lat=" + lat + "&lon=" + lon + "&appid=" + APIKey + "&units=imperial";
+  fetch(weatherURL).then(function(response) {
+    response.json().then(function(data) {
+      console.log(data);
+    
+    displayWeather(city, data);
     });
   });
 };
