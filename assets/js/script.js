@@ -28,7 +28,7 @@ function displayCitySearches(city) {
   var searchCardEl = document.createElement("div");
   searchCardEl.setAttribute("class", "card");
   var searchCardTitleEl = document.createElement("div");
-  searchCardTitleEl.setAttribute("class", "card-body searched-city");
+  searchCardTitleEl.setAttribute("class", " bg-secondary text-white card-body searched-city");
   searchCardTitleEl.textContent = city;
 
   searchCardEl.appendChild(searchCardTitleEl)
@@ -49,7 +49,7 @@ function displayWeather (city, data) {
   var iconSource = data.weather[0].icon;
 
   currentConditions.textContent = "";
-  currentConditions.setAttribute("class", "col-10 text-center")
+  currentConditions.setAttribute("class", "m-2 border col-10 text-center flex justify-content-center")
   var divCityHeader = document.createElement("div");
   var headerCityDate = document.createElement("h2");
   var currentDate = dayjs().format("MM/DD/YYYY");
@@ -66,11 +66,6 @@ function displayWeather (city, data) {
   var currentTemp = document.createElement("p");
   var humidityEl = document.createElement("p");
   var windEl = document.createElement("p");
-  var iconEl  = document.createElement("img");
-
-  // currentTemp.appendChild(currentConditions)
-  // humidity.appendChild(currentConditions)
-  // wind.appendChild(currentConditions)
 
   currentTemp.textContent = "Temperature: " + CurrentTemp + "°F";
   humidityEl.textContent = "Humidity: " + humidity + "%";
@@ -86,7 +81,7 @@ function displayWeather (city, data) {
 function displayForecast(data) {
   console.log(data)
   dailyContainer.textContent = "";
-  // fiveDayHeader.textContent = "5-Day Forecast:"
+  fiveDayHeader.textContent ="5-Day Forecast"
 
   for (var i = 0; i < 5; i++ ) {
     var tempForecast = Math.round(data.list[i].main.temp);
@@ -94,20 +89,21 @@ function displayForecast(data) {
     var iconForecast = data.list[i].weather[0].icon;
 
     var cardEl = document.createElement("div");
-    cardEl.setAttribute("class", "card col-md-5 col-sm-10 bg-primary text-white text-center");
+    cardEl.setAttribute("class", "card col-xl-2 col-md-5 col-sm-10 mx-3 my-2 bg-primary text-white text-center");
     
     var cardBodyEl = document.createElement("h5");
-    cardBodyEl.setAttribute("class", "card-body"); 
+    cardBodyEl.setAttribute("class", "card-body font-weight-bold"); 
 
     var cardDateEl = document.createElement("div");
     cardDateEl.textContent = dayjs().add(i, "days").format("MM/DD/YYYY");
+    cardDateEl.setAttribute("class", "text-nowrap");
 
     var cardIconEl = document.createElement("img");
     cardIconEl.setAttribute("src", "https://openweathermap.org/img/wn/" + iconForecast + "@2x.png");
 
     var cardTempEl = document.createElement("p");
     cardTempEl.setAttribute("class", "card-text");
-    cardTempEl.textContent = "Temperature: " + tempForecast + "°F";
+    cardTempEl.textContent = "Temp: " + tempForecast + "°F";
 
     var cardHumidEl = document.createElement("p");
     cardHumidEl.setAttribute("class", "card-text");
@@ -161,7 +157,6 @@ function getWeather(city, lat, lon) {
     response.json().then(function(data) {
       console.log(data);
     
-    // displayWeather(city, data);
     displayForecast(data);
     });
   });
