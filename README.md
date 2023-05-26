@@ -9,10 +9,10 @@ N/A
 ## Usage
 In order to use the Weather Dashboard the user must input a city name or click on a previously searched city. This allows the user to view the citys current weather and the five day forecast. 
 
-Access the App here: 
+Access the App here: https://mariadolores06.github.io/Weather-Dashboard/
 
 ## Credits
 N/A
 
 ## License
-N/A
+MIT 
