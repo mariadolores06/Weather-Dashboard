@@ -13,9 +13,9 @@ Access the App here: https://mariadolores06.github.io/Weather-Dashboard/
 
 Demo: https://watch.screencastify.com/v/iQHdJya2pAvZsn9zFLTw
 
-Gif of the Application: 
+Screenshot of the Application: 
 
-![image](https://github.com/mariadolores06/Weather-Dashboard/assets/118150524/fb7bb5cc-f462-464a-8f12-1ef519595f09)
+![image](https://github.com/mariadolores06/Weather-Dashboard/assets/118150524/eb710d8c-0aed-4af2-97aa-4863d648c256)
 
 ## Credits
 N/A
