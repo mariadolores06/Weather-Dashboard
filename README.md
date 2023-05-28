@@ -15,7 +15,7 @@ Demo: https://watch.screencastify.com/v/iQHdJya2pAvZsn9zFLTw
 
 Gif of the Application: 
 
-https://github.com/mariadolores06/Weather-Dashboard/blob/main/images/Weather%20Dashboard.gif
+![image](https://github.com/mariadolores06/Weather-Dashboard/assets/118150524/fb7bb5cc-f462-464a-8f12-1ef519595f09)
 
 ## Credits
 N/A
